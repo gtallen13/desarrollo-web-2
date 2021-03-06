@@ -4,6 +4,10 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width= device-width">
         <title>@yield('Titulo')</title>
+
+        <style>
+            body{background-color: aqua}
+        </style>
     </head>
     <body>
         <nav>

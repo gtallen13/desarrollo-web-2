@@ -19,7 +19,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('home')->with('nombre',$nombre);
 // })->name('home');
 
+$portafolio = [
+    ['title'=>'Hi'],
+    ['title'=>'Hola'],
+    ['title'=>'Salut'],
+    ['title'=>'GG'],
+];
+
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
-Route::view('/portafolio', 'portafolio')->name('portafolio');
+Route::get('/portafolio', 'PortController',compact('portafolio'))->name('portafolio');
 Route::view('/contactos', 'contactos')->name('contactos');
