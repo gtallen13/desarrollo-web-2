@@ -15,7 +15,10 @@ class messController extends Controller
         // return $request->get('contenido');
 
         request()->validate([
-            'nombre'=>'required'
+            'nombre'=>'required',
+            'email'=>'required',
+            'subject'=>'required',
+            'contenido'=>'required',
         ]);
     }
 
