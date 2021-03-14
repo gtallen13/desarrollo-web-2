@@ -19,14 +19,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('home')->with('nombre',$nombre);
 // })->name('home');
 
-$portafolio = [
-    ['title'=>'Hi'],
-    ['title'=>'Hola'],
-    ['title'=>'Salut'],
-    ['title'=>'GG'],
-];
+// $portafolio = [
+//     ['title'=>'Proyecto #1'],
+//     ['title'=>'Proyecto #2'],
+//     ['title'=>'Proyecto #3'],
+//     ['title'=>'Proyecto #4'],
+//     ['title'=>'Proyecto #5'],
+// ];
 
 Route::view('/', 'home')->name('home');
 Route::view('/about', 'about')->name('about');
-Route::get('/portafolio', 'PortController',compact('portafolio'))->name('portafolio');
+Route::get('/portafolio', 'SiteController@index')->name('portafolio');
 Route::view('/contactos', 'contactos')->name('contactos');
+Route::post('Contacto',('messController@store'))->name('Contact');
