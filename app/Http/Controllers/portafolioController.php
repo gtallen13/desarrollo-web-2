@@ -1,11 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\mensajerecibido;
-use Illuminate\Http\Request;
 
-class messController extends Controller
+use DB;
+
+class portafolioController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,8 @@ class messController extends Controller
      */
     public function index()
     {
-        //
+        $project= Project::orderby('created_at', 'desc') -> get();
+        return view('Portafolio', compact('project'));
     }
 
     /**
@@ -24,7 +24,8 @@ class messController extends Controller
      */
     public function create()
     {
-        //
+        return view('Project.create');
+
     }
 
     /**
@@ -35,27 +36,11 @@ class messController extends Controller
      */
     public function store(Request $request)
     {
-        //return request('nombre');
-        /*
-        return $request->get('nombre');
-        return $request->get('email');
-        return $request->get('subject');
-        return $request->get('contenido');*/
-        $msg = request()-> validate(
-        [
-            'nombre'=>'required',
-            'email'=>'required',
-            'subject'=>'required',
-            'contenido'=>'required',
-
-        ],
-        [
-            'name.required' =>__('I need your name')
-        ]
-        );
-        Mail::to('jgurrerofugon500@gmail.com')->queue(new mensajerecibido($msg));
-        return new mensajerecibido($msg);
-        return 'Mensaje enviado';
+        Project::create([
+            'title'=>request('title'),
+            'description'=>request('description'),
+        ]);
+        return redirected()->route('Portafolio.index');
 
 
     }
@@ -68,7 +53,10 @@ class messController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('Project.show', [
+            'project'=>Project::findorfail($id)
+        ]);
+
     }
 
     /**

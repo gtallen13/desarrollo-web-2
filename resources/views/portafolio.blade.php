@@ -1,11 +1,15 @@
+
 @extends('plantilla')
 
-@section('Titulo', 'Portafolio')
-@section('Contenido')
-    <h1>Portafolio</h1>   
+@section('contenido')
+<h1>Portafolio</h1>
     <ul>
-        @foreach ($portafolio as $portafolioItem)
-            <li> {{$portafolioItem['title']}}   </li>   
+        @foreach ($project as $project)
+            <li><a href="{{ route('portafolio.show' , $project)}}">{{$project->title}}</a></li>
         @endforeach
+        <li><a href="{{route('portafolio.create', $project)}}">nuevo</a></li>
     </ul>
+
 @endsection
+@section('titulo','Portafolio')
+
